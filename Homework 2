@@ -1,0 +1,71 @@
+#Exercise 2
+
+#1
+a=factor(c("Belgium", "Denmark", "France", "GB", "Ireland", "Italy",
+           "Luxemburg", "Holland", "Portugal", "Spain","USA",
+           "Japan", "Deutschland"))
+b=c(2.8, 1.2, 2.1, 1.6, 1.5, 4.6, 3.6, 
+    2.1, 6.5, 4.6, 3.0, 1.3, 4.2)
+c=c(9.4, 10.4, 10.8, 10.5, 18.4, 11.1, 2.6, 8.8, 5.0,
+    21.5, 6.7, 2.5, 5.6)
+mydf=data.frame(a,b,c)
+colnames(mydf)=c("Land","Increase of the index(x)","unemployment(y)")
+mydf
+
+#1(a)
+mydf[(mydf$`Increase of the index(x)`== max(mydf$`Increase of the index(x)`)),]
+mydf[(mydf$`Increase of the index(x)`== min(mydf$`Increase of the index(x)`)),]
+mydf[(mydf$`unemployment(y)`== max(mydf$`unemployment(y)`)),] 
+mydf[(mydf$`unemployment(y)`== min(mydf$`unemployment(y)`)),]
+
+#1(b)
+range_x=max(mydf$`Increase of the index(x)`)-min(mydf$`Increase of the index(x)`)
+range_x
+range_y=max(mydf$`unemployment(y)`)-min(mydf$`unemployment(y)`)
+range_y
+
+#2
+data(mtcars)
+help(mtcars)
+#[, 1]	 mpg	 Miles/(US) gallon
+#[, 2]	 cyl	 Number of cylinders
+#[, 3]	 disp	 Displacement (cu.in.)
+#[, 4]	 hp	 Gross horsepower
+#[, 5]	 drat	 Rear axle ratio
+#[, 6]	 wt	 Weight (1000 lbs)
+#[, 7]	 qsec	 1/4 mile time
+#[, 8]	 vs	 Engine (0 = V-shaped, 1 = straight)
+#[, 9]	 am	 Transmission (0 = automatic, 1 = manual)
+#[,10]	 gear	 Number of forward gears
+#[,11]	 carb	 Number of carburetors
+
+#3
+View(mtcars)
+mtcars[order(mtcars$mpg,mtcars$cyl,decreasing=T),]
+
+#4
+mtcars$carb=NULL
+
+#5
+colnames(mtcars)
+r.cars=mtcars[,c(4,2,3,1,5,6,7,8,9,10)]
+
+#6
+mtcars[(grepl("Merc",rownames(mtcars))=="TRUE"),]
+
+#7
+dax.prices=read.csv("dax_prices.csv")
+
+#8
+is.numeric(dax.prices$DAX)  #TRUE
+
+#9
+colnames(dax.prices)[2]="Dax Prices"
+
+#10
+write.table(dax.prices, "dax_prices",sep = ";",dec = ",")
+
+#11
+dax.prices.txt=read.table("dax_prices",sep=";",dec=",")
+View(dax.prices.txt)
+is.numeric(dax.prices.txt$Dax.Prices)
